@@ -18,7 +18,7 @@ class SleepRetryMiddleware(RetryMiddleware):
 			print valideCodeInput
 			print valideURL
 			# cmdline.execute("python bbspage/valide/valide.py".split())
-			sleep(120)  # 2 minutes
+			sleep(60)  # 2 minutes
 			#self.send_email()
 			reason = response_status_message(response.status)
 			return self._retry(request, reason, spider) or response
@@ -28,7 +28,7 @@ class SleepRetryMiddleware(RetryMiddleware):
 	def send_email(self):
 		mail_host="mail.act.buaa.edu.cn"
 		mail_user="zhouql"
-		mail_pass="102815" 
+		mail_pass="102815"
 
 		sender = 'zhouql@act.buaa.edu.cn'
 		receivers = ['zhouqilin@buaa.edu.cn']
@@ -41,9 +41,9 @@ class SleepRetryMiddleware(RetryMiddleware):
 		message['Subject'] = Header(subject, 'utf-8')
 
 		try:
-			smtpObj = smtplib.SMTP() 
+			smtpObj = smtplib.SMTP()
 			smtpObj.connect(mail_host, 25)
-			smtpObj.login(mail_user,mail_pass)  
+			smtpObj.login(mail_user,mail_pass)
 			smtpObj.sendmail(sender, receivers, message.as_string())
 			print "SUCCESS"
 		except smtplib.SMTPException:

@@ -86,18 +86,19 @@ class BbspageSqlPipeline(object):
 		conn.execute(sql,values_params)
 
 	def _bbsComment_insert(self, conn, item):
-		sql = 'insert into bbscomment (comment_id,comment_floor,comment_person_url,comment_time,comment_context,comment_scores,comment_up,comment_down) values(%s,%s,%s,%s, %s,%s,%s,%s)'
-		values_params = (item['comment_id'],item['comment_floor'],item['comment_person_url'],item['comment_time'], item['comment_context'],item['comment_scores'],item['comment_up'],item['comment_down'])
+		sql = 'insert into bbscomment (comment_id,comment_floor,comment_person,comment_time,comment_context,comment_scores,comment_up,comment_down) values(%s,%s,%s,%s, %s,%s,%s,%s)'
+		values_params = (item['comment_id'],item['comment_floor'],item['comment_person'],item['comment_time'], item['comment_context'],item['comment_scores'],item['comment_up'],item['comment_down'])
 		conn.execute(sql,values_params)
 
 	def _bbsAsk_insert(self, conn, item):
-		sql = 'insert into bbsask(ask_id,ask_url,ask_person_url,ask_class,ask_tittle,ask_time,ask_context) values(%s,%s,%s,%s, %s,%s,%s)'
-		values_params = (item['ask_id'],item['ask_url'],item['ask_person_url'],item['ask_class'], item['ask_tittle'],item['ask_time'],item['ask_context'])
+		sql = 'insert into bbsask(ask_id,ask_url,ask_person,ask_flag,ask_tittle,ask_time,ask_context) values(%s,%s,%s,%s, %s,%s,%s)'
+		values_params = (item['ask_id'],item['ask_url'],item['ask_person'],item['ask_flag'], item['ask_tittle'],item['ask_time'],item['ask_context'])
 		conn.execute(sql,values_params)
 
 	def _person_insert(self, conn, item):
-		sql = 'insert into person(user_url,person_nick_name,person_detail,person_sign, person_scores_label,person_field,person_skill,person_edu,person_job,person_email,person_mobile,person_qq, person_wexin,focus_num,person_focus,befocus_num, person_befocus) values(%s,%s,%s,%s, %s,%s,%s,%s, %s,%s,%s,%s, %s,%s,%s,%s, %s)'
-		values_params = (item['user_url'],item['person_nick_name'],item['person_detail'],item['person_sign'], item['person_scores_label'],item['person_field'],item['person_skill'],item['person_edu'], item['person_job'],item['person_email'],item['person_mobile'],item['person_qq'], item['person_wexin'],item['focus_num'],item['person_focus'],item['befocus_num'],item['person_befocus'])
+		sql = 'insert into person(user_id,user_url,person_nick_name,person_detail,person_sign, person_scores_label,person_field,person_skill,person_edu,person_job,person_email,person_mobile,person_qq, person_wexin,focus_num,person_focus,befocus_num, person_befocus) values(%s,%s,%s,%s, %s,%s,%s,%s, %s,%s,%s,%s, %s,%s,%s,%s, %s,%s)'
+		values_params = (item['user_id'],item['user_url'],item['person_nick_name'],item['person_detail'],item['person_sign'], item['person_scores_label'],item['person_field'],item['person_skill'],item['person_edu'], item['person_job'],item['person_email'],item['person_mobile'],
+					item['person_qq'], item['person_wexin'],item['focus_num'],item['person_focus'],item['befocus_num'],item['person_befocus'])
 		conn.execute(sql,values_params)
 
 	def _handle_error(self, failure, item, spider):

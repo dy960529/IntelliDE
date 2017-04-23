@@ -14,23 +14,23 @@ class BbsSpider(scrapy.Spider):
 	handle_httpstatus_list = [403]
 	name = 'forum_list_spider'
 	allowed_domains = ['bbs.csdn.net','my.csdn.net']
-	start_urls = []
+	start_urls = ['http://bbs.csdn.net/map']
 
-	# 待修改，改为从数据库中读取
 	def parse(self, response):
-		# cur_url = response._url
-		# sels = Selector(response)
-		# forums_list_urls_end = sels.xpath('//div[@class="map"]/descendant::a/@href').extract()
-		# for forums_url_end in forums_list_urls_end:
-		# 	forums_list_url = 'http://bbs.csdn.net' + forums_url_end
-		# 	forum_class = forums_url_end[8:]
-		# 	print (forums_list_url,forum_class)
-		# 	yield Request(forums_list_url + '/recommend', meta = {'forum_class': forum_class ,
-		# 			'forum_type': 'recommend' }, callback = self.parse_forums_list)
-		# 	yield Request(forums_list_url+'/closed', meta = {'forum_class': forum_class ,
-		# 			'forum_type': 'closed' }, callback = self.parse_forums_list)
-		# 	yield Request(forums_list_url, meta = {'forum_class': forum_class ,
-		# 			'forum_type': 'follow' }, callback = self.parse_forums_list)
+
+		cur_url = response._url
+		sels = Selector(response)
+		forums_list_urls_end = sels.xpath('//div[@class="map"]/descendant::a/@href').extract()
+		for forums_url_end in forums_list_urls_end:
+			forums_list_url = 'http://bbs.csdn.net' + forums_url_end
+			forum_class = forums_url_end[8:]
+			print (forums_list_url,forum_class)
+			yield Request(forums_list_url + '/recommend', meta = {'forum_class': forum_class ,
+					'forum_type': 'recommend' }, callback = self.parse_forums_list)
+			yield Request(forums_list_url+'/closed', meta = {'forum_class': forum_class ,
+					'forum_type': 'closed' }, callback = self.parse_forums_list)
+			yield Request(forums_list_url, meta = {'forum_class': forum_class ,
+					'forum_type': 'follow' }, callback = self.parse_forums_list)
 
 
 	def parse_forums_list(self,response):

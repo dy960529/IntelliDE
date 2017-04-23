@@ -106,8 +106,8 @@ DOWNLOADER_MIDDLEWARES = {
 #	 'bbspage.pipelines.SomePipeline': 300,
 # }
 ITEM_PIPELINES = {
-	#'bbspage.pipelines.BbspageSqlPipeline': 300,
-	'ForumSpider.pipelines.BbspageJsonPipeline': 300,
+	'ForumSpider.pipelines.BbspageSqlPipeline': 300,
+	#'ForumSpider.pipelines.BbspageJsonPipeline': 300,
 }
 
 # COMMANDS_MODULE = 'bbspage.commands'
