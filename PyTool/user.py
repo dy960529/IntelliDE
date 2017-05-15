@@ -33,15 +33,15 @@ class user():
 		return data
 
 	def print_user(self):
-		print ("user_id    : " + self.user_id)
-		print ("user_url   : " + self.user_url)
-		print ("nick_name  : " + self.nick_name)
-		print ("user_detail: " + self.user_detail)
-		print ("user_sign  : " + self.user_sign)
-		print ("focus_num  : " + str(self.focus_num))
-		print ("befocus_num: " + str(self.befocus_num))
-		print ("user_focus : " + self.person_focus)
-		print ("user_befocus : " + self.person_befocus)
+		print ("user_id     : " + self.user_id)
+		print ("user_url    : " + self.user_url)
+		print ("nick_name   : " + self.nick_name)
+		print ("user_detail : " + self.user_detail)
+		print ("user_sign   : " + self.user_sign)
+		print ("focus_num   : " + str(self.focus_num))
+		print ("befocus_num : " + str(self.befocus_num))
+		print ("user_focus  : " + self.person_focus)
+		print ("user_befocus: " + self.person_befocus)
 
 		return
 

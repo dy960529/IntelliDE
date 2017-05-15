@@ -24,7 +24,7 @@ class BbsSpider(scrapy.Spider):
 		for forums_url_end in forums_list_urls_end:
 			forums_list_url = 'http://bbs.csdn.net' + forums_url_end
 			forum_class = forums_url_end[8:]
-			print (forums_list_url,forum_class)
+			#print (forums_list_url,forum_class)
 			yield Request(forums_list_url + '/recommend', meta = {'forum_class': forum_class ,
 					'forum_type': 'recommend' }, callback = self.parse_forums_list)
 			yield Request(forums_list_url+'/closed', meta = {'forum_class': forum_class ,
@@ -63,6 +63,8 @@ class BbsSpider(scrapy.Spider):
 			print ("Error: Visit Type Wrong!")
 		visit_item['visit_page'] = re.findall(r'page=(\d+)',response.url)
 		yield visit_item
+
+		# there is a bug,can not right request!
 		next_page = sel.xpath('//a[@class="next"]/@href').extract()
 		if next_page:
 			next_url = 'http://bbs.csdn.net' + next_page[0]

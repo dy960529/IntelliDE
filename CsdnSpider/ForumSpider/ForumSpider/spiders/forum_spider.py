@@ -21,7 +21,7 @@ class BbsSpider(scrapy.Spider):
 	F_id = dbtest.select_forum_id()
 	for data in F_id:
 		start_urls.append('http://bbs.csdn.net/topics/' + str(data[0]))
-	print (start_urls)
+	#print (start_urls)
 
 	def parse(self, response):
 		cur_url = response.url
